@@ -18,8 +18,7 @@ a {
   width: 200px;
   height: auto;
 }
-#log {
-}
+
 #navbar {
   display: flex;
   justify-content: space-between;
