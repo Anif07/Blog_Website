@@ -1,3 +1,9 @@
+const hamdurger = document.getElementById("hamberger");
+const navbar = document.getElementById("navbar");
+hamdurger.addEventListener("click", () => {
+  hamdurger.classList.toggle("active");
+  navbar.classList.toggle("active");
+});
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import {
   getDatabase,

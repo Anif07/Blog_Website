@@ -37,6 +37,14 @@ a {
   font-size: 1.3rem;
   font-weight: 500;
 }
+#hamberger {
+  display: none;
+  /* display: flex; */
+  align-items: center;
+}
+#hamberger i {
+  font-size: 1.4rem;
+}
 /* Banner */
 #banner {
   background-image: url("../Assets/background.jpg");
@@ -58,4 +66,48 @@ a {
   font-weight: 700;
   cursor: pointer;
   border: transparent;
+}
+@media screen and (max-width: 768px) {
+  .link {
+    font-size: 1.1rem;
+  }
+  #logo img {
+    width: 150px;
+    height: auto;
+  }
+}
+@media screen and (max-width: 620px) {
+  .link {
+    font-size: 1rem;
+  }
+  #logo img {
+    width: 120px;
+    height: auto;
+  }
+}
+@media screen and (max-width: 576px) {
+  #nav_ul {
+    display: none;
+  }
+  #hamberger {
+    display: block;
+    display: flex;
+    cursor: pointer;
+  }
+  #nav_ul {
+    position: fixed;
+    left: -100%;
+    top: 45px;
+    gap: 0;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+  }
+  #nav_ul li {
+    margin: 20px 0;
+  }
+  #nav_ul.active {
+    left: 0;
+  }
 }
