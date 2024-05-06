@@ -1,9 +1,16 @@
-const hamdurger = document.getElementById("hamberger");
+const hamburger = document.getElementById("hamburger");
 const navbar = document.getElementById("navbar");
-hamdurger.addEventListener("click", () => {
-  hamdurger.classList.toggle("active");
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
   navbar.classList.toggle("active");
 });
+document.querySelectorAll(".link").forEach((n) =>
+  n.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navbar.classList.remove("active");
+  })
+);
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import {
   getDatabase,
