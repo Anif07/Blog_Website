@@ -80,39 +80,37 @@ function getPostData() {
         <div >
         <div id="mainBox"><img src="${imageURL}" alt="Post Image" /></div>
           <h2>${title.substring(0, 80)}</h2>
-          <p id="para">${
-            postContent.substring(0, 350) + "..."
-          }<span class="more">${postContent.substring(350)}</span></p>
-          
+          <p id="para">${postContent.substring(0, 350) + "..."}</p>
         </div>
       `;
       //<button id="read-btn">Read</button>
-      function showBlog() {
-        console.log("showBlog");
-      }
+      //<span class="more">${postContent.substring(350)}</span>
+      // function showBlog() {
+      //   console.log("showBlog");
+      // }
     });
-    addEventListeners();
+    // addEventListeners();
   });
 }
-function addEventListeners() {
-  const readButtons = document.querySelectorAll(".read-btn");
-  readButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const parentDiv = button.parentNode;
-      const para = parentDiv.querySelector("#para");
-      const moreText = parentDiv.querySelector(".more");
+// function addEventListeners() {
+//   const readButtons = document.querySelectorAll(".read-btn");
+//   readButtons.forEach((button) => {
+//     button.addEventListener("click", function () {
+//       const parentDiv = button.parentNode;
+//       const para = parentDiv.querySelector("#para");
+//       const moreText = parentDiv.querySelector(".more");
 
-      if (moreText.style.display === "none" || !moreText.style.display) {
-        para.innerHTML += moreText.innerHTML;
-        button.textContent = "Hide";
-      } else {
-        para.innerHTML = para.innerHTML.split("<span")[0];
-        button.textContent = "Read";
-      }
-      moreText.style.display =
-        moreText.style.display === "none" ? "inline" : "none";
-    });
-  });
-}
+//       if (moreText.style.display === "none" || !moreText.style.display) {
+//         para.innerHTML += moreText.innerHTML;
+//         button.textContent = "Hide";
+//       } else {
+//         para.innerHTML = para.innerHTML.split("<span")[0];
+//         button.textContent = "Read";
+//       }
+//       moreText.style.display =
+//         moreText.style.display === "none" ? "inline" : "none";
+//     });
+//   });
+// }
 
 getPostData();

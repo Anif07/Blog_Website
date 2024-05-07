@@ -91,6 +91,7 @@ function Add_Post(event) {
               // imgDisplay.appendChild(imgElement);
               document.querySelector("#heading").value = "";
               document.querySelector("#article").value = "";
+              document.querySelector("#banner-upload").value = "";
               console.log("Post added successfully!");
               alert("posted successfully");
             })
