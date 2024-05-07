@@ -139,3 +139,64 @@ function getPostData() {
   });
 }
 getPostData();
+
+// function getPostData() {
+//   const user_ref = ref(db, "post/");
+//   get(user_ref).then((snapshot) => {
+//     snapshot.forEach((childSnapshot) => {
+//       const { title, postContent, imageURL } = childSnapshot.val();
+//       const postId = childSnapshot.key; // Get the post ID for deletion
+
+//       let container = document.getElementById("blog-container");
+//       let box = document.createElement("div");
+//       box.classList.add("box-1");
+//       container.appendChild(box);
+//       box.innerHTML = `
+//         <div>
+//           <div id="mainBox"><img src="${imageURL}" alt="Post Image" /></div>
+//           <h2>${title.substring(0, 80)}</h2>
+//           <p id="para">${postContent.substring(
+//             0,
+//             350
+//           )}<span class="more">${postContent.substring(350)}</span></p>
+//           <button class="read-btn">Read More</button>
+//           <button class="delete-btn">Delete</button>
+//         </div>
+//       `;
+
+//       // Hide content beyond the truncated part initially
+//       let moreContent = box.querySelector(".more");
+//       if (moreContent) {
+//         moreContent.style.display = "none";
+//       }
+
+//       // Add event listener to toggle display of additional content
+//       let readBtn = box.querySelector(".read-btn");
+//       if (readBtn) {
+//         readBtn.addEventListener("click", () => {
+//           if (moreContent.style.display === "none") {
+//             moreContent.style.display = "inline";
+//             readBtn.textContent = "Read Less";
+//           } else {
+//             moreContent.style.display = "none";
+//             readBtn.textContent = "Read More";
+//           }
+//         });
+//       }
+
+//       // Add event listener to delete the post
+//       let deleteBtn = box.querySelector(".delete-btn");
+//       if (deleteBtn) {
+//         deleteBtn.addEventListener("click", () => {
+//           // Here, you can implement the code to delete the post using postId
+//           // For example:
+//           const postRef = ref(db, `post/${postId}`);
+//           remove(postRef);
+//           confirm("are you sure");
+//           console.log("Delete button clicked for post with ID:", postId);
+//         });
+//       }
+//     });
+//   });
+// }
+// getPostData();
