@@ -77,6 +77,7 @@ a {
   cursor: pointer;
   border: transparent;
 }
+
 @media screen and (max-width: 768px) {
   .link {
     font-size: 1.1rem;
@@ -102,39 +103,6 @@ a {
   #logo {
     text-align: center;
   }
-  /* #nav_ul {
-    display: none;
-  } */
-  /* #hamburger {
-    display: block;
-    display: flex;
-    cursor: pointer;
-  }
-  #hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-  }
-  #hamburger.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  #hamburger.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-  #nav_ul {
-    position: fixed;
-    left: -100%;
-    top: 45px;
-    gap: 0;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    transition: 0.3s;
-  }
-  #nav_ul li {
-    margin: 20px 0;
-  }
-  #nav_ul.active {
-    left: 0;
-  } */
 }
 @media screen and (max-width: 370px) {
   #navbar {
