@@ -1,15 +1,15 @@
-const hamburger = document.getElementById("hamburger");
-const navbar = document.getElementById("navbar");
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  navbar.classList.toggle("active");
-});
-document.querySelectorAll(".link").forEach((n) =>
-  n.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    navbar.classList.remove("active");
-  })
-);
+// const hamburger = document.getElementById("hamburger");
+// const navbar = document.getElementById("navbar");
+// hamburger.addEventListener("click", () => {
+//   hamburger.classList.toggle("active");
+//   navbar.classList.toggle("active");
+// });
+// document.querySelectorAll(".link").forEach((n) =>
+//   n.addEventListener("click", () => {
+//     hamburger.classList.remove("active");
+//     navbar.classList.remove("active");
+//   })
+// );
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import {
@@ -85,14 +85,14 @@ function Add_Post(event) {
             imageURL: downloadURL, // Saving the download URL of the image
           })
             .then(() => {
-              const imgDisplay = document.getElementById("banner");
-              // imgDisplay.style.backgroundImage = `url(${downloadURL})`;
-              const imgElement = document.createElement("img");
-              imgElement.src = downloadURL;
-              imgDisplay.appendChild(imgElement);
+              // const imgDisplay = document.getElementById("banner");
+              // const imgElement = document.createElement("img");
+              // imgElement.src = downloadURL;
+              // imgDisplay.appendChild(imgElement);
               document.querySelector("#heading").value = "";
               document.querySelector("#article").value = "";
               console.log("Post added successfully!");
+              alert("posted successfully");
             })
             .catch((error) => {
               console.error("Error adding post: ", error);
@@ -108,39 +108,6 @@ function Add_Post(event) {
 }
 add_post_btn.addEventListener("click", Add_Post);
 
-//get data from database db
-// function getPostData() {
-//   const user_ref = ref(db, "post/");
-//   get(user_ref).then((snapshot) => {
-//     const data = snapshot.val();
-
-//     const box = document.querySelector(".box-1");
-//     for (const key in data) {
-//       const { title, post_Content } = data[key];
-//       console.log(title, post_Content);
-//     }
-//   });
-// }
-// getPostData();
-// function getPostData() {
-//   const user_ref = ref(db, "post/");
-//   get(user_ref).then((snapshot) => {
-//     snapshot.forEach((childSnapshot) => {
-//       const { title, post_Content } = childSnapshot.val();
-//       console.log(title, post_Content);
-
-//       let box = document.querySelector("#box-1");
-//       box.classList.add("box-1");
-
-//       box.innerHTML = `
-//       <h2>${title}</h2>
-//       <p>${post_Content}</p>
-//       `;
-//       document.body.appendChild(box);
-//     });
-//   });
-// }
-// getPostData();
 // const form = document.querySelector("form");
 // form.addEventListener("submit", (e) => {
 //   e.preventDefault();

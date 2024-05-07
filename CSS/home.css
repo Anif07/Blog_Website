@@ -59,7 +59,7 @@ a {
 #banner {
   background-image: url("../Assets/background.jpg");
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: right;
   background-size: cover;
   width: 100%;
   height: 90vh;
@@ -143,8 +143,13 @@ a {
   }
   #logo {
     text-align: center;
+    margin-top: 15px;
   }
   .link {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
+    padding: 0;
+  }
+  #nav_ul li {
+    margin-bottom: 10px;
   }
 }

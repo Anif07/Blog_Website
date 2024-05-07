@@ -1,118 +1,3 @@
-// const json = localStorage.getItem("form");
-// const obj = JSON.parse(json);
-// const blogcontainer = document.querySelector(".blog-container");
-// for (key in obj) {
-//   if (obj.hasOwnProperty(key)) {
-//     const value = obj[key];
-//     const blogbox = document.createElement("div");
-//     blogbox.classList.add("box-1");
-//     console.log(value);
-
-//     const heading = document.createElement("h2");
-//     heading.textContent = value.heading;
-//     console.log(value.heading);
-
-//     const paragraph = document.createElement("p");
-//     paragraph.textContent = value.content;
-
-//     const readButton = document.createElement("button");
-//     readButton.classList.add("read-btn");
-//     readButton.textContent = "Read";
-
-//     blogbox.appendChild(heading);
-//     blogbox.appendChild(paragraph);
-//     blogbox.appendChild(readButton);
-
-//     blogcontainer.appendChild(blogbox);
-//   }
-// }
-
-// for (const entry of Object.entries(obj)) {
-//   const [key, value] = entry;
-//   const blogbox = document.createElement("div");
-//   blogbox.classList.add("box-1");
-//   console.log(value);
-
-//   const heading = document.createElement("h2");
-//   heading.textContent = value.heading;
-//   console.log(value.heading);
-
-//   const paragraph = document.createElement("p");
-//   paragraph.textContent = value.content;
-
-//   const readButton = document.createElement("button");
-//   readButton.classList.add("read-btn");
-//   readButton.textContent = "Read";
-
-//   blogbox.appendChild(heading);
-//   blogbox.appendChild(paragraph);
-//   blogbox.appendChild(readButton);
-
-//   blogcontainer.appendChild(blogbox);
-// }
-
-// c = 1;
-// for (key in obj) {
-//   const blogbox = document.createElement("div");
-//   blogbox.classList.add("box-1");
-//   if (c == 1) {
-//     var value = obj[key];
-
-//     console.log(value);
-
-//     const heading = document.createElement("h2");
-//     heading.textContent = value;
-//     console.log(value);
-
-//     // const paragraph = document.createElement("p");
-//     // paragraph.textContent = value.content;
-
-//     const readButton = document.createElement("button");
-//     readButton.classList.add("read-btn");
-//     readButton.textContent = "Read";
-
-//     blogbox.appendChild(heading);
-//     // blogbox.appendChild(paragraph);
-//     blogbox.appendChild(readButton);
-
-//     // blogcontainer.appendChild(blogbox);
-//   } else if (c == 2) {
-//     const paragraph = document.createElement("p");
-//     paragraph.textContent = value;
-//     blogbox.appendChild(paragraph);
-//   }
-
-//   blogcontainer.appendChild(blogbox);
-//   c++;
-// }
-
-// let c = 1; // Initialize c outside the loop
-// for (const key in obj) {
-//   const value = obj[key]; // Declare value inside the loop
-
-//   const blogbox = document.createElement("div");
-//   blogbox.classList.add("box-1");
-
-//   if (c === 1) {
-//     const heading = document.createElement("h2");
-//     heading.textContent = value;
-//     blogbox.appendChild(heading);
-//   } else if (c === 2) {
-//     const paragraph = document.createElement("p");
-//     paragraph.textContent = value;
-//     blogbox.appendChild(paragraph);
-//   }
-
-//   const readButton = document.createElement("button");
-//   readButton.classList.add("read-btn");
-//   readButton.textContent = "Read";
-//   blogbox.appendChild(readButton);
-
-//   blogcontainer.appendChild(blogbox);
-
-//   // Update the value of c for the next iteration
-//   c = c === 1 ? 2 : 1;
-// }
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import {
   getDatabase,
@@ -168,12 +53,24 @@ const storage = getStorage(app);
 //   });
 // }
 // getPostData();
+// Define showBlog function in the global scope
+// function showBlog() {
+//   const para = document.getElementById("para");
+//   console.log(para);
+// }
+
+// // Use event delegation to handle button clicks
+// document.addEventListener("click", function (event) {
+//   if (event.target && event.target.id === "read-btn") {
+//     showBlog();
+//   }
+// });
 function getPostData() {
   const user_ref = ref(db, "post/");
   get(user_ref).then((snapshot) => {
     snapshot.forEach((childSnapshot) => {
       const { title, postContent, imageURL } = childSnapshot.val();
-      console.log(title, postContent, imageURL);
+      // console.log(title, postContent, imageURL);
 
       let container = document.getElementById("blog-container");
       let box = document.createElement("div");
@@ -183,10 +80,37 @@ function getPostData() {
         <div >
         <div id="mainBox"><img src="${imageURL}" alt="Post Image" /></div>
           <h2>${title.substring(0, 80)}</h2>
-          <p>${postContent.substring(0, 350) + "..."}</p>
-          <button class="read-btn">Read</button>
+          <p id="para">${
+            postContent.substring(0, 350) + "..."
+          }<span class="more">${postContent.substring(350)}</span></p>
+          
         </div>
       `;
+      //<button id="read-btn">Read</button>
+      function showBlog() {
+        console.log("showBlog");
+      }
+    });
+    addEventListeners();
+  });
+}
+function addEventListeners() {
+  const readButtons = document.querySelectorAll(".read-btn");
+  readButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const parentDiv = button.parentNode;
+      const para = parentDiv.querySelector("#para");
+      const moreText = parentDiv.querySelector(".more");
+
+      if (moreText.style.display === "none" || !moreText.style.display) {
+        para.innerHTML += moreText.innerHTML;
+        button.textContent = "Hide";
+      } else {
+        para.innerHTML = para.innerHTML.split("<span")[0];
+        button.textContent = "Read";
+      }
+      moreText.style.display =
+        moreText.style.display === "none" ? "inline" : "none";
     });
   });
 }
