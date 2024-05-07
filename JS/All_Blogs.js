@@ -65,52 +65,77 @@ const storage = getStorage(app);
 //     showBlog();
 //   }
 // });
+// function getPostData() {
+//   const user_ref = ref(db, "post/");
+//   get(user_ref).then((snapshot) => {
+//     snapshot.forEach((childSnapshot) => {
+//       const { title, postContent, imageURL } = childSnapshot.val();
+//       // console.log(title, postContent, imageURL);
+
+//       let container = document.getElementById("blog-container");
+//       let box = document.createElement("div");
+//       box.classList.add("box-1");
+//       container.appendChild(box);
+//       box.innerHTML = `
+//         <div >
+//         <div id="mainBox"><img src="${imageURL}" alt="Post Image" /></div>
+//           <h2>${title.substring(0, 80)}</h2>
+//           <p id="para">${postContent.substring(0, 350) + "..."}</p>
+//         </div>
+//       `;
+//       //<button id="read-btn">Read</button>
+//       //<span class="more">${postContent.substring(350)}</span>
+//       // function showBlog() {
+//       //   console.log("showBlog");
+//       // }
+//     });
+//   });
+// }
+
+// getPostData();
+
 function getPostData() {
   const user_ref = ref(db, "post/");
   get(user_ref).then((snapshot) => {
     snapshot.forEach((childSnapshot) => {
       const { title, postContent, imageURL } = childSnapshot.val();
-      // console.log(title, postContent, imageURL);
 
       let container = document.getElementById("blog-container");
       let box = document.createElement("div");
       box.classList.add("box-1");
       container.appendChild(box);
       box.innerHTML = `
-        <div >
-        <div id="mainBox"><img src="${imageURL}" alt="Post Image" /></div>
+        <div>
+          <div id="mainBox"><img src="${imageURL}" alt="Post Image" /></div>
           <h2>${title.substring(0, 80)}</h2>
-          <p id="para">${postContent.substring(0, 350) + "..."}</p>
+          <p id="para">${postContent.substring(
+            0,
+            350
+          )}<span class="more">${postContent.substring(350)}</span></p>
+          <button class="read-btn">Read More</button>
         </div>
       `;
-      //<button id="read-btn">Read</button>
-      //<span class="more">${postContent.substring(350)}</span>
-      // function showBlog() {
-      //   console.log("showBlog");
-      // }
+
+      // Hide content beyond the truncated part initially
+      let moreContent = box.querySelector(".more");
+      if (moreContent) {
+        moreContent.style.display = "none";
+      }
+
+      // Add event listener to toggle display of additional content
+      let readBtn = box.querySelector(".read-btn");
+      if (readBtn) {
+        readBtn.addEventListener("click", () => {
+          if (moreContent.style.display === "none") {
+            moreContent.style.display = "inline";
+            readBtn.textContent = "Read Less";
+          } else {
+            moreContent.style.display = "none";
+            readBtn.textContent = "Read More";
+          }
+        });
+      }
     });
-    // addEventListeners();
   });
 }
-// function addEventListeners() {
-//   const readButtons = document.querySelectorAll(".read-btn");
-//   readButtons.forEach((button) => {
-//     button.addEventListener("click", function () {
-//       const parentDiv = button.parentNode;
-//       const para = parentDiv.querySelector("#para");
-//       const moreText = parentDiv.querySelector(".more");
-
-//       if (moreText.style.display === "none" || !moreText.style.display) {
-//         para.innerHTML += moreText.innerHTML;
-//         button.textContent = "Hide";
-//       } else {
-//         para.innerHTML = para.innerHTML.split("<span")[0];
-//         button.textContent = "Read";
-//       }
-//       moreText.style.display =
-//         moreText.style.display === "none" ? "inline" : "none";
-//     });
-//   });
-// }
-
 getPostData();

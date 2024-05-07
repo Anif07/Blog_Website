@@ -28,10 +28,10 @@ body {
   margin: 15px 0;
   font-size: 1.3rem;
 }
-#read-btn {
+.read-btn {
   background-color: black;
   font-size: 0.9rem;
-  width: 60px;
+  width: 100px;
   height: 30px;
   color: white;
   border-radius: 10px;
