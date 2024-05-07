@@ -47,6 +47,10 @@ img {
   /* justify-content: center; */
   align-items: center;
 }
+.link {
+  font-size: 1.4rem;
+  font-weight: 550;
+}
 
 @media screen and (max-width: 1400px) {
   .box-1 h2 {

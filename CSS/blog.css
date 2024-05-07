@@ -14,7 +14,7 @@ body {
   height: 80px;
   font-size: 2rem;
   line-height: 30px;
-  margin-top: 20px;
+  margin-top: 40px;
   border: 1px solid;
 }
 #heading::placeholder,
@@ -69,6 +69,8 @@ body {
 }
 .banner input {
   width: 200px;
+  display: inline-block;
+  height: 30px;
 }
 .banner-upload-btn {
   /* padding: 20px 30px; */
