@@ -48,7 +48,7 @@ img {
   align-items: center;
 }
 .link {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 520;
 }
 
@@ -130,5 +130,11 @@ img {
   img {
     width: 320px;
     height: auto;
+  }
+  .link {
+    font-size: 1.1rem;
+  }
+  #nav_ul li {
+    margin-top: 10px;
   }
 }
