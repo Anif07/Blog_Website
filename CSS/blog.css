@@ -36,6 +36,12 @@ body {
 #blog-options {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+#blog-options p {
+  margin-left: 20px;
+  vertical-align: 40px;
+  padding-top: 20px;
 }
 #post-btn {
   width: 100px;

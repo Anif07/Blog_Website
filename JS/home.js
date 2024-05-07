@@ -73,42 +73,37 @@ function Add_Post(event) {
   const file = imageInput.files[0];
 
   const storageReference = storageRef(storage, "images/" + id); // Assuming you are using Firebase Storage
-  uploadBytes(storageReference, file)
-    .then((snapshot) => {
-      // Get the download URL for the image
-      getDownloadURL(snapshot.ref)
-        .then((downloadURL) => {
-          // Save post data along with the image URL to the database
-          set(ref(db, "post/" + id), {
-            title: title,
-            postContent: post_Content,
-            imageURL: downloadURL, // Saving the download URL of the image
-          })
-            .then(() => {
-              // const imgDisplay = document.getElementById("banner");
-              // const imgElement = document.createElement("img");
-              // imgElement.src = downloadURL;
-              // imgDisplay.appendChild(imgElement);
-              document.querySelector("#heading").value = "";
-              document.querySelector("#article").value = "";
-              document.querySelector("#banner-upload").value = "";
-              console.log("Post added successfully!");
-              alert("posted successfully");
-            })
-            .catch((error) => {
-              console.error("Error adding post: ", error);
-            });
-        })
-        .catch((error) => {
-          console.error("Error getting download URL: ", error);
-        });
-    })
-    .catch((error) => {
-      console.error("Error uploading image: ", error);
+  uploadBytes(storageReference, file).then((snapshot) => {
+    // Get the download URL for the image
+    getDownloadURL(snapshot.ref).then((downloadURL) => {
+      // Save post data along with the image URL to the database
+      set(ref(db, "post/" + id), {
+        title: title,
+        postContent: post_Content,
+        imageURL: downloadURL, // Saving the download URL of the image
+      }).then(() => {
+        // const imgDisplay = document.getElementById("banner");
+        // const imgElement = document.createElement("img");
+        // imgElement.src = downloadURL;
+        // imgDisplay.appendChild(imgElement);
+        document.querySelector("#heading").value = "";
+        document.querySelector("#article").value = "";
+        document.querySelector("#banner-upload").value = "";
+        console.log("Post added successfully!");
+        alert("posted successfully, now please refer all blogs");
+      });
     });
+  });
 }
 add_post_btn.addEventListener("click", Add_Post);
-
+const waitHandle = document.createElement("p");
+waitHandle.innerText = "please wait until message";
+const btnContainer = document.querySelector("#blog-options");
+const btn = document.querySelector("#post-btn");
+btn.addEventListener("click", () => {
+  console.log("wait");
+  btnContainer.append(waitHandle);
+});
 // const form = document.querySelector("form");
 // form.addEventListener("submit", (e) => {
 //   e.preventDefault();
