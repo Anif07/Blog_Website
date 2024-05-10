@@ -78,6 +78,9 @@ body {
     height: auto;
     margin: auto;
   }
+  #full-blog-container {
+    width: 85%;
+  }
 }
 @media screen and (max-width: 540px) {
   #post-title {
@@ -92,7 +95,7 @@ body {
     margin: auto;
   }
   #full-blog-container {
-    width: 85%;
+    width: 90%;
   }
 }
 @media screen and (max-width: 490px) {
