@@ -91,6 +91,9 @@ body {
     height: auto;
     margin: auto;
   }
+  #full-blog-container {
+    width: 85%;
+  }
 }
 @media screen and (max-width: 490px) {
   #img {
@@ -102,7 +105,7 @@ body {
     font-size: 1.6rem;
   }
   #post-content {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 @media screen and (max-width: 390px) {
@@ -118,7 +121,7 @@ body {
     font-size: 1.5rem;
   }
   #post-content {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 }
 @media screen and (max-width: 350px) {
