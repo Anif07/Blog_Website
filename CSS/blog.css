@@ -6,7 +6,7 @@
 body {
   width: 100%;
 }
-#blog-container {
+#blog-input {
   padding: 1% 10%;
 }
 #heading {
@@ -75,6 +75,9 @@ body {
 .banner-upload-btn {
   /* padding: 20px 30px; */
   cursor: pointer;
+}
+#uploadImg {
+  width: 40px;
 }
 @media screen and (max-width: 576px) {
   #heading::placeholder {

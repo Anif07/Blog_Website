@@ -1,16 +1,3 @@
-// const hamburger = document.getElementById("hamburger");
-// const navbar = document.getElementById("navbar");
-// hamburger.addEventListener("click", () => {
-//   hamburger.classList.toggle("active");
-//   navbar.classList.toggle("active");
-// });
-// document.querySelectorAll(".link").forEach((n) =>
-//   n.addEventListener("click", () => {
-//     hamburger.classList.remove("active");
-//     navbar.classList.remove("active");
-//   })
-// );
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import {
   getDatabase,
@@ -20,12 +7,6 @@ import {
   remove,
   update,
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
-import {
-  getStorage,
-  ref as storageRef,
-  uploadBytes,
-  getDownloadURL,
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -38,6 +19,12 @@ const firebaseConfig = {
   messagingSenderId: "806404218202",
   appId: "1:806404218202:web:f17ae91fea3315852d6763",
 };
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -45,101 +32,47 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const storage = getStorage(app);
 
-const add_post_btn = document.querySelector("#post-btn");
+function getPostData() {
+  const user_ref = ref(db, "post/");
+  let count = 0;
+  get(user_ref).then((snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      if (count < 4) {
+        const { title, postContent, imageURL } = childSnapshot.val();
+        const id = childSnapshot.key;
+        //   console.log(id);
+        let container = document.getElementById("blog-container");
+        let box = document.createElement("div");
+        box.classList.add("box-1");
+        container.appendChild(box);
+        box.innerHTML = `
+            <div>
+              <div id="mainBox"><img src="${imageURL}" alt="Post Image" /></div>
+              <h2>${title.substring(0, 80)}</h2>
+              <p id="para">${
+                postContent.substring(0) + "..."
+              }<span class="more">${postContent.substring(350)}</span></p>
+              <button class="read-btn">Read More</button>
+            </div>
+          `;
 
-function Add_Post(event) {
-  event.preventDefault();
-  const title = document.querySelector("#heading").value;
-  const post_Content = document.querySelector("#article").value;
-  const id = Date.now();
+        // Hide content beyond the truncated part initially
+        let moreContent = box.querySelector(".more");
+        if (moreContent) {
+          moreContent.style.display = "none";
+        }
 
-  // const imageInput = document.querySelector("#banner-upload");
-  // const file = imageInput.files[0];
-
-  //   set(ref(db, "post/" + id), {
-  //     title: title,
-  //     post_Content: post_Content,
-  //   });
-  //   // const newPostRef = push(ref(db, "posts"), {
-  //   //   title: title,
-  //   //   content: content,
-  //   // });
-  //   document.querySelector("#heading").value = "";
-  //   document.querySelector("#article").value = "";
-  // }
-  //........................................
-
-  const imageInput = document.querySelector("#banner-upload");
-  const file = imageInput.files[0];
-
-  const storageReference = storageRef(storage, "images/" + id); // Assuming you are using Firebase Storage
-  uploadBytes(storageReference, file).then((snapshot) => {
-    // Get the download URL for the image
-    getDownloadURL(snapshot.ref).then((downloadURL) => {
-      // Save post data along with the image URL to the database
-      set(ref(db, "post/" + id), {
-        title: title,
-        postContent: post_Content,
-        imageURL: downloadURL, // Saving the download URL of the image
-      }).then(() => {
-        // const imgDisplay = document.getElementById("banner");
-        // const imgElement = document.createElement("img");
-        // imgElement.src = downloadURL;
-        // imgDisplay.appendChild(imgElement);
-        document.querySelector("#heading").value = "";
-        document.querySelector("#article").value = "";
-        document.querySelector("#banner-upload").value = "";
-        console.log("Post added successfully!");
-        alert("posted successfully, now please refer all blogs");
-      });
+        // Add event listener to toggle display of additional content
+        let readBtn = box.querySelector(".read-btn");
+        if (readBtn) {
+          readBtn.addEventListener("click", () => {
+            window.location = `full_blog_post.html?id=${id}`;
+          });
+        }
+        count++;
+      }
     });
   });
 }
-add_post_btn.addEventListener("click", Add_Post);
-const waitHandle = document.createElement("p");
-waitHandle.innerText = "please wait until message";
-const btnContainer = document.querySelector("#blog-options");
-const btn = document.querySelector("#post-btn");
-btn.addEventListener("click", () => {
-  console.log("wait");
-  btnContainer.append(waitHandle);
-});
-// const form = document.querySelector("form");
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
 
-//   const headingDetails = form.querySelector("#heading").value;
-//   const contentDetails = form.querySelector("#article").value;
-
-//   const formData = {
-//     title: headingDetails,
-//     content: contentDetails,
-//   };
-
-//   fetch("https://cinezenith-json-server.onrender.com/blogs", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(formData),
-//   });
-// });
-// // fetch("https://cinezenith-json-server.onrender.com/blogs/7", {
-// //   method: "DELETE",
-// // });
-
-// // async function fetchData() {
-// //   const response = await fetch(
-// //     "https://cinezenith-json-server.onrender.com/blogs"
-// //   );
-// //   return response.json().data;
-// // }
-
-// // (async () => {
-// //   var newDataVariable = await fetchData();
-// // })();
-
-// // console.log(newDataVariable);
-
-// const image = document.querySelector("#banner-upload");
-// console.log(image);
+getPostData();

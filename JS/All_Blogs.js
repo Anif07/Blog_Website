@@ -47,7 +47,7 @@ function getPostData() {
         <div>
           <div id="mainBox"><img src="${imageURL}" alt="Post Image" /></div>
           <h2>${title.substring(0, 80)}</h2>
-          <p id="para">${
+          <p id="para-allBlog">${
             postContent.substring(0) + "..."
           }<span class="more">${postContent.substring(350)}</span></p>
           <button class="read-btn">Read More</button>

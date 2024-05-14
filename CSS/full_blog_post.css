@@ -24,6 +24,22 @@ body {
   font-size: 2.4rem;
   text-align: center;
 }
+.AllBlogs {
+  background-color: black;
+  color: white;
+  width: 120px;
+  text-decoration: none;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 1.2rem;
+  margin: auto;
+  border-radius: 20px;
+  margin: 20px auto;
+}
+#AllBlogs {
+  display: block;
+}
 @media screen and (max-width: 1400px) {
 }
 @media screen and (max-width: 1285px) {

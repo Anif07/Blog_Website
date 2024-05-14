@@ -39,7 +39,7 @@ body {
   font-size: 1.3rem;
   overflow: hidden;
 }
-#para {
+#para-allBlog {
   overflow: hidden;
   height: 168px;
 }
@@ -47,7 +47,7 @@ body {
   background-color: black;
   font-size: 0.9rem;
   width: 100px;
-  height: 30px;
+  height: 35px;
   color: white;
   border-radius: 10px;
   cursor: pointer;
@@ -195,7 +195,7 @@ img {
     margin-top: 10px;
   }
 }
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 350px) {
   .box-1 {
     width: 295px;
   }

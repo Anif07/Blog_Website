@@ -49,6 +49,8 @@ function displayFullPost() {
         document.getElementById("img").setAttribute("src", post.imageURL);
         document.getElementById("post-title").innerText = post.title;
         document.getElementById("post-content").innerText = post.postContent;
+        btn = document.querySelector(".AllBlogs");
+        btn.style.id = "AllBlogs";
       } else {
         // Handle case where post is not found
         console.log("Post not found");
